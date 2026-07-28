@@ -1,0 +1,13 @@
+# Maven build 產物
+target/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# 本機設定 / 機密(帳密放這種被忽略的檔)
+application-local.properties
+*.env
+
+# OS
+.DS_Store
