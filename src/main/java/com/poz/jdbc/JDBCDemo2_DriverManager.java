@@ -16,11 +16,10 @@ public class JDBCDemo2_DriverManager {
         String sql = "insert into cash (name,deposit) VALUES ('bin',413);" ;
         Statement stmt = conn.createStatement();
 
+
         int count = stmt.executeUpdate(sql);
 
         System.out.println(count);
 
-        stmt.close();
-        conn.close();
     }
 }

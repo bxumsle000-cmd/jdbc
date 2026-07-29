@@ -16,9 +16,11 @@ public class JDBCDemo5_ResultSet {
                 + "trustServerCertificate=true;";
         String username = "root";
         String password = "1247";
+        String sql = "SELECT * from cash" ;
+
+
         Connection conn = DriverManager.getConnection(url,username,password);
 
-        String sql = "SELECT * from cash" ;
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
 

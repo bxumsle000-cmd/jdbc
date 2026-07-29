@@ -3,7 +3,7 @@ package com.poz.jdbc;
 
 import java.sql.*;
 
-public class JDBCDemo6_UserLogin {
+public class JDBCDemo7_PreparedStatement {
     public static void main(String[] args) throws SQLException {
         String url = "jdbc:sqlserver://;databaseName=jdbc;"
                 + "trustServerCertificate=true;";
@@ -14,16 +14,18 @@ public class JDBCDemo6_UserLogin {
         String user =  "alice";
         String hash = "alice123";
 
-        String sqlQuery = String.format( "SELECT * FROM Users WHERE username='%s' and password='%s'",user,hash);
-        Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery(sqlQuery);
+        String sqlQuery = "SELECT * FROM Users WHERE username=? and password=?" ;
+        PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+        pstmt.setString(1,user);
+        pstmt.setString(2,hash);
 
+        ResultSet rs = pstmt.executeQuery();
         if (rs.next()){
             System.out.println("登入成功");
         }else {
             System.out.println("登入失敗");
         }
-        stmt.close();
+        pstmt.close();
         conn.close();
     }
 }
