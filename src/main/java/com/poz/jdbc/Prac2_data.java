@@ -12,11 +12,12 @@ import java.util.List;
 import java.util.Properties;
 
 public class Prac2_data {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args)  {
         String sql = "select * from cash ; ";
 
         try {
             Connection conn = DataSourceUtil.getConnection();
+            conn.setAutoCommit(false);
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
 
@@ -28,6 +29,7 @@ public class Prac2_data {
                 Account account = new Account(name, deposit);
                 accountList.add(account);
                 System.out.println(accountList);
+                conn.commit();
             }
         }catch (SQLException e){
             throw new RuntimeException(e);
