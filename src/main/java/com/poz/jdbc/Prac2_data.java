@@ -18,8 +18,8 @@ public class Prac2_data {
         try {
             Connection conn = DataSourceUtil.getConnection();
             conn.setAutoCommit(false);
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
 
             List<Account> accountList = new ArrayList<>();
             while (rs.next()) {
